@@ -3,6 +3,7 @@ using Random
 Random.seed!(1234);
 
 function build_dataset(f = circle; N_samples = 1000, N_noise = 50)
+    @assert N_noise < N_samples
     data = rand(N_samples,2)
     feat = f.(eachslice(data,dims=2)...)
     # Change label of random indices
