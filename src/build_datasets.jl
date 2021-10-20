@@ -1,5 +1,3 @@
-using Random
-
 Random.seed!(1234);
 
 function build_dataset(f = circle; N_samples = 1000, N_noise = 50)
