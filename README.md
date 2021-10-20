@@ -6,4 +6,4 @@ Still in development. The ideia is to translate the original code to Julia.
 
 # References
 
-- ![[1] DEEP LEARNING AS OPTIMAL CONTROL PROBLEMS: MODELS AND NUMERICAL METHODS](https://arxiv.org/pdf/1904.05657.pdf)
+- [Deep Learning as Optimal Control Problems: Models and Numerical Methods](https://arxiv.org/pdf/1904.05657.pdf)
