@@ -1,6 +1,6 @@
 name = "OCDNN"
 uuid = "04e95dd8-2660-4c0e-9d70-3f4d10bb3a0d"
-authors = ["rafabench <rafa.bench@gmail.com>"]
+authors = ["rafabench <rafa.bench@gmail.com>", "diegosobrinho <diegodias3468@gmail.com>", "rmvelho"]
 version = "0.1.0"
 
 [deps]
