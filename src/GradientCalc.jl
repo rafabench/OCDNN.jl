@@ -14,7 +14,7 @@ end
 
 function GradientCalc(Ctrls, rkmethod, C)
 
-    S = RKstepper(Ctrls, rkmethod, HBVP);
+    S = RKstepper(Ctrls, rkmethod, C);
     channels = Ctrls.channels;
     nlayers = Ctrls.nlayers;
     h = S.stepsize;

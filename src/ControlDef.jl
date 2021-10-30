@@ -11,7 +11,7 @@ mutable struct ControlDef
     stepsize::Float64
     function ControlDef(dataset, stepsize, channels, nlayers)
         Y0, C = dataset
-        N,d = size(dataset)
+        N,d = size(Y0)
         Y0 = [Y0 zeros(N,channels-d)]
         rows = N
         cols = d
