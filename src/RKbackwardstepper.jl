@@ -13,7 +13,7 @@ function RKbackwardstepper(Ctrls, rkmethod, C, S)
           for j = i+1:rkmethod.s
              Ps[i] = Ps[i]-h*rkmethod.At[i,j]*S1.fPs[n-1,j];
           end
-          S1.fPs[n-1,i] = AdjVf(S1.Ys[n-1,i],Ps[i],Ctrls.K[n-1],Ctrls.b[n-1]);                   
+          S1.fPs[n-1,i] = AdjVf(S1.Ys[n-1,i],Ps[i],Ctrls.K[n-1],Ctrls.b[n-1]);
        end
        S1.P[n-1] = S1.P[n];
        for i = 1:rkmethod.s

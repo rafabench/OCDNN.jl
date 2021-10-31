@@ -1,7 +1,6 @@
-function calculate_norm(Gradient)
-    nlayers = length(Gradient.K[k])
+function calculate_norm(Gradient, nlayers)
     normGsq = sum( Gradient.W .^2 )+ Gradient.mu^2;
-    normGsq += sum( sum(Gradient.K[k] .^ 2) + Gradient.b[k]*Gradient.b[k]' for k in 1:nlayers);
+    normGsq += sum( sum(Gradient.K[k] .^ 2) + Gradient.b[k]'*Gradient.b[k] for k in 1:nlayers);
     return normGsq
 end
 
@@ -13,9 +12,9 @@ function backtracking(Ctrls,Gradient,rkmethod,C,τ)
     nlayers = Ctrls.nlayers;
 
     fk = objective(Ctrls,rkmethod,C)
-    normGsq = calculate_norm(Gradient);
+    normGsq = calculate_norm(Gradient, nlayers);
     fnew = 2*fk;
-    C1 = copy(Ctrls)
+    C1 = deepcopy(Ctrls)
     # Armijo's Condition
     while fnew > fk - α*c*normGsq
         α = ρ*α

@@ -2,7 +2,7 @@ __precompile__()
 
 module OCDNN
 
-    using Random, LinearAlgebra
+    using Random, LinearAlgebra, ForwardDiff, Printf
 
     include("build_datasets.jl")
     include("HBVPdef.jl")

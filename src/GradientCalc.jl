@@ -24,12 +24,12 @@ function GradientCalc(Ctrls, rkmethod, C)
     G = Gradient(channels, nlayers)
     G.W = DJW(S.Y[last],Ctrls.W,Ctrls.mu,C);
     G.mu = DJmu(S.Y[last],Ctrls.W,Ctrls.mu,C);
-    E = randn(s)
+    E = [randn(size(Ctrls.Y0)) for i = 1:rkmethod.s];
 
     for k = 1:last-1
         for i = 1:s
-            G.K[k] = G.K[k]+h*M.w[i]*DVfK(S.Ys[k,i],S.P[k+1],Ctrls.K[k],Ctrls.b[k]);
-            G.b[k] = G.b[k]+h*M.w[i]*DVfb(S.Ys[k,i],S.P[k+1],Ctrls.K[k],Ctrls.b[k]);
+            G.K[k] = G.K[k]+h*rkmethod.w[i]*DVfK(S.Ys[k,i],S.P[k+1],Ctrls.K[k],Ctrls.b[k]);
+            G.b[k] = G.b[k]+h*rkmethod.w[i]*DVfb(S.Ys[k,i],S.P[k+1],Ctrls.K[k],Ctrls.b[k]);
             E[i]= -AdjVf(S.Ys[k,i],S.P[k+1],Ctrls.K[k],Ctrls.b[k]);
         end
         
@@ -37,10 +37,10 @@ function GradientCalc(Ctrls, rkmethod, C)
            for i = 1:s-m
                P = zeros(S.rows,channels);
                for j = i+1:s-m+1
-                   P = P+h*M.At[i,j]*E[j];
+                   P = P+h*rkmethod.At[i,j]*E[j];
                end
-               G.K[k] = G.K[k] + h*M.w[i]*DVfK(S.Ys[k,i],P,Ctrls.K[k],Ctrls.b[k]);
-               G.b[k] = G.b[k] + h*M.w[i]*DVfb(S.Ys[k,i],P,Ctrls.K[k],Ctrls.b[k]);
+               G.K[k] = G.K[k] + h*rkmethod.w[i]*DVfK(S.Ys[k,i],P,Ctrls.K[k],Ctrls.b[k]);
+               G.b[k] = G.b[k] + h*rkmethod.w[i]*DVfb(S.Ys[k,i],P,Ctrls.K[k],Ctrls.b[k]);
                E[i] =  -AdjVf(S.Ys[k,i],P,Ctrls.K[k],Ctrls.b[k]);
            end
         end
