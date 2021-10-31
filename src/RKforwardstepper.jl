@@ -1,4 +1,4 @@
-function RKforwardstepper(Ctrls,rkmethod,C)
+function RKforwardstepper(Ctrls,rkmethod)
 
     nlayers = Ctrls.nlayers;
     channels = Ctrls.channels;

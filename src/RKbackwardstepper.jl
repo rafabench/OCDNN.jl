@@ -1,4 +1,4 @@
-function RKbackwardstepper(Ctrls, rkmethod, C, S)
+function RKbackwardstepper(Ctrls, rkmethod, S)
 
     # This function assumes that the input S contains the adjoint variable
     # S.P[nlayers+1] obtained after RKforwardstepper has been called
