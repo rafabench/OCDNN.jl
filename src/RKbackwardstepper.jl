@@ -1,4 +1,4 @@
-function RKbackwardstepper(Ctrls, rkmethod, S)
+function RKbackwardstepper(Ctrls, rkmethod, S, Problem)
 
     # This function assumes that the input S contains the adjoint variable
     # S.P[nlayers+1] obtained after RKforwardstepper has been called
@@ -13,7 +13,7 @@ function RKbackwardstepper(Ctrls, rkmethod, S)
           for j = i+1:rkmethod.s
              Ps[i] = Ps[i]-h*rkmethod.At[i,j]*S1.fPs[n-1,j];
           end
-          S1.fPs[n-1,i] = AdjVf(S1.Ys[n-1,i],Ps[i],Ctrls.K[n-1],Ctrls.b[n-1]);
+          S1.fPs[n-1,i] = Problem.AdjVf(S1.Ys[n-1,i],Ps[i],Ctrls.K[n-1],Ctrls.b[n-1]);
        end
        S1.P[n-1] = S1.P[n];
        for i = 1:rkmethod.s

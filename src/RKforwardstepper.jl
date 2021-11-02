@@ -1,4 +1,4 @@
-function RKforwardstepper(Ctrls,rkmethod)
+function RKforwardstepper(Ctrls,rkmethod,Problem)
 
     nlayers = Ctrls.nlayers;
     channels = Ctrls.channels;
@@ -14,7 +14,7 @@ function RKforwardstepper(Ctrls,rkmethod)
            for j = 1:i-1
                S.Ys[n,i]=S.Ys[n,i].+h*rkmethod.A[i,j]*F[j];
            end
-           F[i] = Vf(S.Ys[n,i],Ctrls.K[n],Ctrls.b[n]);
+           F[i] = Problem.Vf(S.Ys[n,i],Ctrls.K[n],Ctrls.b[n]);
         end
         S.Y[n+1] = S.Y[n];
         for i = 1:rkmethod.s
@@ -22,6 +22,6 @@ function RKforwardstepper(Ctrls,rkmethod)
         end
     end
     
-    S.Classifier = eta(S.Y[last]*Ctrls.W .+ Ctrls.mu);
+    S.Classifier = Problem.eta.(S.Y[last]*Ctrls.W .+ Ctrls.mu);
     return S
 end

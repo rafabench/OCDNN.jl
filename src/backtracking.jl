@@ -4,14 +4,14 @@ function calculate_norm(Gradient, nlayers)
     return normGsq
 end
 
-function backtracking(Ctrls,Gradient,rkmethod,C,τ)
+function backtracking(Ctrls,Gradient,rkmethod,Problem,τ)
     
     ρ = 0.5
     c = 0.4
     α = τ/ρ
     nlayers = Ctrls.nlayers;
 
-    fk = objective(Ctrls,rkmethod,C)
+    fk = objective(Ctrls,rkmethod,Problem)
     normGsq = calculate_norm(Gradient, nlayers);
     fnew = 2*fk;
     C1 = deepcopy(Ctrls)
@@ -24,7 +24,7 @@ function backtracking(Ctrls,Gradient,rkmethod,C,τ)
         end
         C1.W = Ctrls.W - α*Gradient.W;
         C1.mu = Ctrls.mu - α*Gradient.mu;
-        fnew = objective(C1,rkmethod,C);
+        fnew = objective(C1,rkmethod,Problem);
     end
     return C1,α,normGsq
 end
