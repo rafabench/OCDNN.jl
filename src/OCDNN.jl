@@ -17,6 +17,7 @@ module OCDNN
     include("ExplicitRungeKutta.jl")
     include("runlearn.jl")
 
-    export build_dataset, train_ode_dnn, circle, halfspace, four_regions
+    export build_dataset, train_ode_dnn, circle, halfspace, four_regions, 
+    Problem, RKforwardstepper, ExplicitRungeKutta, SolutionDef, RK1, RK2, RK3, RK4, RK5
 
 end
