@@ -12,9 +12,9 @@ mutable struct Gradient
     end
 end
 
-function GradientCalc(Ctrls, rkmethod, Problem)
+function GradientCalc(Ctrls, rkmethod, Problem, c, mgrit)
 
-    S = RKstepper(Ctrls, rkmethod, Problem);
+    S = RKstepper(Ctrls, rkmethod, Problem, c, mgrit);
     channels = Ctrls.channels;
     nlayers = Ctrls.nlayers;
     h = S.stepsize;
